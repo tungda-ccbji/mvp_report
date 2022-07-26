@@ -30,6 +30,23 @@ namespace MVP.Generate.Excel.Implementation
             return string.Empty;
         }
 
+        public string ExportProcessingFeeTracking(ProcessingFeeTrackingInput input)
+        {
+            try
+            {
+                var template = new XLTemplate(AppDomain.CurrentDomain.BaseDirectory + "Template/Processing_Fee_Tracking.xlsx");
+                template.AddVariable(input);
+                template.Generate();
+                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + $"ProcessingFeeTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx");
+                return $"ProcessingFeeTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx";
+            }
+            catch (Exception ex)
+            {
+                _logService.Error($"Exception when calling ExportSubcriptionTracking {ex.Message}", ex);
+            }
+            return string.Empty;
+        }
+
         public string ExportSaleTracking(SaleTrackingInput input)
         {
             try
@@ -43,6 +60,23 @@ namespace MVP.Generate.Excel.Implementation
             catch (Exception ex)
             {
                 _logService.Error($"Exception when calling ExportSaleTracking {ex.Message}", ex);
+            }
+            return string.Empty;
+        }
+
+        public string ExportSubcriptionTracking(SubcriptionTrackingInput input)
+        {
+            try
+            {
+                var template = new XLTemplate(AppDomain.CurrentDomain.BaseDirectory + "Template/Subcription_Tracking.xlsx");
+                template.AddVariable(input);
+                template.Generate();
+                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + $"SubcriptionTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx");
+                return $"SubcriptionTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx";
+            }
+            catch (Exception ex)
+            {
+                _logService.Error($"Exception when calling ExportSubcriptionTracking {ex.Message}", ex);
             }
             return string.Empty;
         }

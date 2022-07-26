@@ -28,7 +28,7 @@ namespace MVP.Generate.Excel.Entities
         }
         public string OrderNumber { set; get; }
         public string OrderDate { set; get; }
-        public string TypefOrder { set; get; }
+        public string TypeOrder { set; get; }
         public string Status { set; get; }
         public int Remaining { set; get; }
         public string ProductName { set; get; }

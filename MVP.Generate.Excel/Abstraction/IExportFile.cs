@@ -11,6 +11,7 @@ namespace MVP.Generate.Excel.Abstraction
         string ExportSaleTracking(SaleTrackingInput input);
         string ExportCorporateWallet(CorporateWalletInput input);
         string ExportUcashPointst(UcashPointInput input);
-
+        string ExportSubcriptionTracking(SubcriptionTrackingInput input);
+        string ExportProcessingFeeTracking(ProcessingFeeTrackingInput input);
     }
 }

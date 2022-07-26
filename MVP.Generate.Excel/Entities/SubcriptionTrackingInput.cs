@@ -8,16 +8,22 @@ namespace MVP.Generate.Excel.Entities
 {
     public class SubcriptionTrackingInput
     {
-        [JsonProperty("date_range")]
         public string DateRange { set; get; }
-        [JsonProperty("datas")]
         public List<SubcriptionTracking> SubcriptionTrackings { set; get; }
     }
     public class SubcriptionTracking
     {
+        public SubcriptionTracking()
+        {
+            Volume = new Volume();
+            NSR = new NSR();
+            Promotions = new Promotions();
+            Vendor = new Vendor();
+            UcashPointsEarning = new UcashPointsEarning();
+        }
         public string OrderNumber { set; get; }
         public string OrderDate { set; get; }
-        public string TypefOrder { set; get; }
+        public string TypeOrder { set; get; }
         public string FirstDeliveryDate { set; get; }
         public string LastDeliveryDate { set; get; }
         public string Frequency { set; get; }
@@ -32,7 +38,7 @@ namespace MVP.Generate.Excel.Entities
         public string SubCategory { set; get; }
         public string CustomerID { set; get; }
         public Volume Volume { set; get; }
-        public NSR Nsr { set; get; }
+        public NSR NSR { set; get; }
         public Promotions Promotions { set; get; }
         public Vendor Vendor { set; get; }
         public UcashPointsEarning UcashPointsEarning { set; get; }
