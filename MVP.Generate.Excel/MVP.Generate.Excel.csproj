@@ -16,6 +16,9 @@
     <None Update="Template\Corporate_Wallet.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Template\Processing_Fee_Tracking.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Template\Sale_Tracking.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

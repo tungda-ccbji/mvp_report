@@ -8,17 +8,15 @@ namespace MVP.Generate.Excel.Entities
 {
     public class ProcessingFeeTrackingInput
     {
-        [JsonProperty("date_range")]
         public string DateRange { set; get; }
-        [JsonProperty("datas")]
-        public List<ProcessingFeeTracking> ProcessingFeeTracking { set; get; }
+        public List<ProcessingFeeTracking> ProcessingFeeTrackings { set; get; }
     }
     public class ProcessingFeeTracking
     {
         public string OrderNumber { set; get; }
         public string OrderDate { set; get; }
         public string CustomerID { set; get; }
-        public string TypeofOrder { set; get; }
+        public string TypeOrder { set; get; }
         public string Status { set; get; }
         public string StripeCard { set; get; }
         public string CorporateWallet { set; get; }
