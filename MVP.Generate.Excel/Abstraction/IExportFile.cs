@@ -9,5 +9,6 @@ namespace MVP.Generate.Excel.Abstraction
     public interface IExportFile
     {
         string ExportSaleTracking(SaleTrackingInput input);
+        string ExportCorporateWallet(CorporateWalletInput input);
     }
 }

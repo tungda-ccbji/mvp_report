@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Template\Corporate_Wallet.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Template\Sale_Tracking.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

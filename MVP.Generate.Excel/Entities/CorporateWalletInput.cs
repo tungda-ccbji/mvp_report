@@ -8,9 +8,7 @@ namespace MVP.Generate.Excel.Entities
 {
     public class CorporateWalletInput
     {
-        [JsonProperty("date_range")]
         public string DateRange { set; get; }
-        [JsonProperty("datas")]
         public List<CorporateWallet> CorporateWallets { set; get; }
     }
     public class CorporateWallet

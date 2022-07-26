@@ -12,6 +12,24 @@ namespace MVP.Generate.Excel.Implementation
         {
             _logService = logService;
         }
+
+        public string ExportCorporateWallet(CorporateWalletInput input)
+        {
+            try
+            {
+                var template = new XLTemplate(AppDomain.CurrentDomain.BaseDirectory + "Template/Corporate_Wallet.xlsx");
+                template.AddVariable(input);
+                template.Generate();
+                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + $"CorporateWalletData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx");
+                return $"CorporateWalletData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx";
+            }
+            catch (Exception ex)
+            {
+                _logService.Error($"Exception when calling ExportCorporateWallet {ex.Message}", ex);
+            }
+            return string.Empty;
+        }
+
         public string ExportSaleTracking(SaleTrackingInput input)
         {
             try
@@ -24,7 +42,7 @@ namespace MVP.Generate.Excel.Implementation
             }
             catch (Exception ex)
             {
-                _logService.Error($"Exception when calling ProcessFile {ex.Message}", ex);
+                _logService.Error($"Exception when calling ExportSaleTracking {ex.Message}", ex);
             }
             return string.Empty;
         }
