@@ -74,6 +74,33 @@ namespace MVP.Generate.Excel.Controllers
                 });
             }
         }
+        [HttpPost]
+        [HttpOptions]
+        public async Task<IActionResult> ExportUCashPoints(UcashPointInput input)
+        {
+            try
+            {
+                var result = await Task.FromResult(_exportFile.ExportUcashPointst(input));
+                if (string.IsNullOrWhiteSpace(result))
+                {
+                    return Ok(new ResponseModel
+                    {
+                        ErrorMessage = "Export UCash Points Fail !"
+                    });
+                }
+                var stream = new FileStream(AppDomain.CurrentDomain.BaseDirectory + result, FileMode.Open, FileAccess.Read, FileShare.None, 5000, FileOptions.DeleteOnClose);
+                Response.Headers.Add("Content-Disposition", $"inline; filename={result}");
+                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            }
+            catch (Exception ex)
+            {
+                _logService.Error("Exception when calling ExportUCashPoints", ex);
+                return Ok(new ResponseModel
+                {
+                    ErrorMessage = $"Exception when calling ExportUCashPoints: {ex.Message}"
+                });
+            }
+        }
 
     }
 }

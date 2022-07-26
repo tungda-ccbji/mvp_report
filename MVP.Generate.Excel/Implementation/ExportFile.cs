@@ -46,5 +46,22 @@ namespace MVP.Generate.Excel.Implementation
             }
             return string.Empty;
         }
+
+        public string ExportUcashPointst(UcashPointInput input)
+        {
+            try
+            {
+                var template = new XLTemplate(AppDomain.CurrentDomain.BaseDirectory + "Template/UCash_Point.xlsx");
+                template.AddVariable(input);
+                template.Generate();
+                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + $"UcashPointsData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx");
+                return $"UcashPointsData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx";
+            }
+            catch (Exception ex)
+            {
+                _logService.Error($"Exception when calling ExportUcashPointst {ex.Message}", ex);
+            }
+            return string.Empty;
+        }
     }
 }

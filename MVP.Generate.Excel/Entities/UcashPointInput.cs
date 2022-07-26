@@ -8,16 +8,15 @@ namespace MVP.Generate.Excel.Entities
 {
     public class UcashPointInput
     {
-        [JsonProperty("date_range")]
         public string DateRange { set; get; }
-        [JsonProperty("datas")]
         public List<UcashPoint> UcashPoints { set; get; }
     }
     public class UcashPoint
     {
         public string Date { set; get; }
+        public string HorecaA { set; get; }
         public float TotalAvailableUcashPoints { set; get; }
-        public float DebitOrderumber { set; get; }
+        public string DebitOrderumber { set; get; }
         public string Status { set; get; }
         public float TotalOrderValue { set; get; }
         public float UcashOrderValue { set; get; }
