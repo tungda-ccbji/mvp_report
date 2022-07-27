@@ -9,6 +9,8 @@ namespace MVP.Generate.Excel.Entities
     public class SubcriptionTrackingInput
     {
         public string DateRange { set; get; }
+        public string StartDate { set; get; }
+        public string EndDate { set; get; }
         public List<SubcriptionTracking> SubcriptionTrackings { set; get; }
     }
     public class SubcriptionTracking

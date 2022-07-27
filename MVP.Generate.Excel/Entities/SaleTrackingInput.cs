@@ -13,6 +13,8 @@ namespace MVP.Generate.Excel.Entities
             SaleTrackings = new List<SaleTracking>();
         }
         public string DateRange { set; get; }
+        public string StartDate { set; get; }
+        public string EndDate { set; get; }
         public List<SaleTracking> SaleTrackings { set; get; }
     }
     public class SaleTracking
