@@ -19,14 +19,11 @@ namespace MVP.Generate.Excel.Implementation
             try
             {
                 var template = new XLTemplate(AppDomain.CurrentDomain.BaseDirectory + "Template/Corporate_Wallet.xlsx");
-                var culture = new CultureInfo("ja-JP", false);
-                DateTime.TryParseExact(input.StartDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime startDate);
-                DateTime.TryParseExact(input.EndDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime endDate);
-                input.DateRange = $"{startDate.ToString("dd日 MMMM", culture)} {(startDate.Year != endDate.Year ? startDate.Year.ToString() : string.Empty)} - {endDate.ToString("dd日 MMMM", culture)} {endDate.Year}";
                 template.AddVariable(input);
                 template.Generate();
-                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + $"CorporateWalletData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx");
-                return $"CorporateWalletData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx";
+                var fileName = $"CorporateWalletData_{DateTime.UtcNow:yyyyMMddHHmmss}.xlsx";
+                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + fileName);
+                return fileName;
             }
             catch (Exception ex)
             {
@@ -39,15 +36,12 @@ namespace MVP.Generate.Excel.Implementation
         {
             try
             {
-                var culture = new CultureInfo("ja-JP", false);
-                DateTime.TryParseExact(input.StartDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime startDate);
-                DateTime.TryParseExact(input.EndDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime endDate);
-                input.DateRange = $"{startDate.ToString("dd日 MMMM", culture)} {(startDate.Year != endDate.Year ? startDate.Year.ToString() : string.Empty)} - {endDate.ToString("dd日 MMMM", culture)} {endDate.Year}";
                 var template = new XLTemplate(AppDomain.CurrentDomain.BaseDirectory + "Template/Processing_Fee_Tracking.xlsx");
                 template.AddVariable(input);
                 template.Generate();
-                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + $"ProcessingFeeTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx");
-                return $"ProcessingFeeTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx";
+                var fileName = $"ProcessingFeeTrackingData_{DateTime.UtcNow:yyyyMMddHHmmss}.xlsx";
+                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + fileName);
+                return fileName;
             }
             catch (Exception ex)
             {
@@ -61,14 +55,11 @@ namespace MVP.Generate.Excel.Implementation
             try
             {
                 var template = new XLTemplate(AppDomain.CurrentDomain.BaseDirectory + "Template/Sale_Tracking.xlsx");
-                var culture = new CultureInfo("ja-JP", false);
-                DateTime.TryParseExact(input.StartDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime startDate);
-                DateTime.TryParseExact(input.EndDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime endDate);
-                input.DateRange = $"{startDate.ToString("dd日 MMMM", culture)} {(startDate.Year != endDate.Year ? startDate.Year.ToString() : string.Empty)} - {endDate.ToString("dd日 MMMM", culture)} {endDate.Year}";
                 template.AddVariable(input);
                 template.Generate();
-                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + $"SaleTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx");
-                return $"SaleTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx";
+                var fileName = $"SaleTrackingData_{DateTime.UtcNow:yyyyMMddHHmmss}.xlsx";
+                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + fileName);
+                return fileName;
             }
             catch (Exception ex)
             {
@@ -82,14 +73,11 @@ namespace MVP.Generate.Excel.Implementation
             try
             {
                 var template = new XLTemplate(AppDomain.CurrentDomain.BaseDirectory + "Template/Subcription_Tracking.xlsx");
-                var culture = new CultureInfo("ja-JP", false);
-                DateTime.TryParseExact(input.StartDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime startDate);
-                DateTime.TryParseExact(input.EndDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime endDate);
-                input.DateRange = $"{startDate.ToString("dd日 MMMM", culture)} {(startDate.Year != endDate.Year ? startDate.Year.ToString() : string.Empty)} - {endDate.ToString("dd日 MMMM", culture)} {endDate.Year}";
                 template.AddVariable(input);
                 template.Generate();
-                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + $"SubcriptionTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx");
-                return $"SubcriptionTrackingData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx";
+                var fileName = $"SubcriptionTrackingData_{DateTime.UtcNow:yyyyMMddHHmmss}.xlsx";
+                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + fileName);
+                return fileName;
             }
             catch (Exception ex)
             {
@@ -98,23 +86,20 @@ namespace MVP.Generate.Excel.Implementation
             return string.Empty;
         }
 
-        public string ExportUcashPointst(UcashPointInput input)
+        public string ExportUcashPoints(UcashPointInput input)
         {
             try
             {
                 var template = new XLTemplate(AppDomain.CurrentDomain.BaseDirectory + "Template/UCash_Point.xlsx");
-                var culture = new CultureInfo("ja-JP", false);
-                DateTime.TryParseExact(input.StartDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime startDate);
-                DateTime.TryParseExact(input.EndDate, "yyyy/MM/dd", culture, DateTimeStyles.None, out DateTime endDate);
-                input.DateRange = $"{startDate.ToString("dd日 MMMM", culture)} {(startDate.Year != endDate.Year ? startDate.Year.ToString() : string.Empty)} - {endDate.ToString("dd日 MMMM", culture)} {endDate.Year}";
                 template.AddVariable(input);
                 template.Generate();
-                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + $"UcashPointsData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx");
-                return $"UcashPointsData_{DateTime.UtcNow.ToString("MMddyyyy")}.xlsx";
+                var fileName = $"UcashPointsData_{DateTime.UtcNow:yyyyMMddHHmmss}.xlsx";
+                template.SaveAs(AppDomain.CurrentDomain.BaseDirectory + fileName);
+                return fileName;
             }
             catch (Exception ex)
             {
-                _logService.Error($"Exception when calling ExportUcashPointst {ex.Message}", ex);
+                _logService.Error($"Exception when calling ExportUcashPoints {ex.Message}", ex);
             }
             return string.Empty;
         }

@@ -1,0 +1,215 @@
+<html>
+	<head>
+		<title>MVP Report Examples</title>
+	</head>
+	<body>
+		<button class="sales-tracking">Export Sales Tracking</button>		
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script>
+			$(".sales-tracking").click(function() {
+				let input = {
+					"start_date": "2022/08/23", //date must be in format yyyy/MM/dd
+					"end_date": "2022/09/23", //date must be in format yyyy/MM/dd
+					"data": [
+						{
+							"order_number": "UV1d221",
+							"order_date": "01/08/2022",
+							"type_of_order": "Normal",
+							"status": "Completed",
+							"remaining": "0",
+							"product_name": "ワインA",
+							"product_sku": "123",
+							"category": "Water",
+							"sub_category": "Water",
+							"customer_id": "HorecaA",
+							"volume": {
+								"units": "Units",
+								"litres": "Litres"
+							},
+							"nsr": {
+								"base_price": "1100",
+								"percent": "10",
+								"value": "100"
+							},
+							"promotions": {
+								"percent": "10",
+								"value": "2000",
+								"point_usage": "500",
+								"coupon_code": "2Ucash",
+								"coupon_value": "1000",
+								"total_redemption": "2000"
+							},
+							"purchase": {
+								"vendor_name": "Name",
+								"base_price":"500",
+								"tax":"10"
+							},
+							"nsr_redemtions" : "1000",
+							"payment": {
+								"stripe_card": "stripe_card",
+								"corporate_wallet": "1000",
+								"redemption": "1000",
+								"total": "1000"
+							},
+							"refund": {
+								"stripe_card": "corporate_wallet",
+								"corporate_wallet": "1000",
+								"redemption": "500",
+								"reason": "Reason",
+								"total": "500"
+							},
+							"ucash_points_earning": {
+								"cashback_percent": "2",
+								"cashback_value": "10",
+								"pending_earning": "0",
+								"cancelled_earning": "0",
+								"realized_earning": "0",
+								"total": "12"
+							}
+						},
+						{
+							"order_number": "UV1d222",
+							"order_date": "01/08/2022",
+							"type_of_order": "Normal",
+							"status": "Completed",
+							"remaining": "0",
+							"product_name": "ワインA",
+							"product_sku": "123",
+							"category": "Water",
+							"sub_category": "Water",
+							"customer_id": "HorecaA",
+							"volume": {
+								"units": "Units",
+								"litres": "Litres"
+							},
+							"nsr": {
+								"base_price": "1100",
+								"percent": "10",
+								"value": "100"
+							},
+							"promotions": {
+								"percent": "10",
+								"value": "2000",
+								"point_usage": "500",
+								"coupon_code": "2Ucash",
+								"coupon_value": "1000",
+								"total_redemption": "2000"
+							},
+							"purchase": {
+								"vendor_name": "Name",
+								"base_price":"500",
+								"tax":"10"
+							},
+							"nsr_redemtions" : "1000",
+							"payment": {
+								"stripe_card": "stripe_card",
+								"corporate_wallet": "1000",
+								"redemption": "1000",
+								"total": "1000"
+							},
+							"refund": {
+								"stripe_card": "corporate_wallet",
+								"corporate_wallet": "1000",
+								"redemption": "500",
+								"reason": "Reason",
+								"total": "500"
+							},
+							"ucash_points_earning": {
+								"cashback_percent": "2",
+								"cashback_value": "10",
+								"pending_earning": "0",
+								"cancelled_earning": "0",
+								"realized_earning": "0",
+								"total": "12"
+							}
+						},
+						{
+							"order_number": "UV1d223",
+							"order_date": "01/08/2022",
+							"type_of_order": "Normal",
+							"status": "Completed",
+							"remaining": "0",
+							"product_name": "ワインA",
+							"product_sku": "123",
+							"category": "Water",
+							"sub_category": "Water",
+							"customer_id": "HorecaA",
+							"volume": {
+								"units": "Units",
+								"litres": "Litres"
+							},
+							"nsr": {
+								"base_price": "1100",
+								"percent": "10",
+								"value": "100"
+							},
+							"promotions": {
+								"percent": "10",
+								"value": "2000",
+								"point_usage": "500",
+								"coupon_code": "2Ucash",
+								"coupon_value": "1000",
+								"total_redemption": "2000"
+							},
+							"purchase": {
+								"vendor_name": "Name",
+								"base_price":"500",
+								"tax":"10"
+							},
+							"nsr_redemtions" : "1000",
+							"payment": {
+								"stripe_card": "stripe_card",
+								"corporate_wallet": "1000",
+								"redemption": "1000",
+								"total": "1000"
+							},
+							"refund": {
+								"stripe_card": "corporate_wallet",
+								"corporate_wallet": "1000",
+								"redemption": "500",
+								"reason": "Reason",
+								"total": "500"
+							},
+							"ucash_points_earning": {
+								"cashback_percent": "2",
+								"cashback_value": "10",
+								"pending_earning": "0",
+								"cancelled_earning": "0",
+								"realized_earning": "0",
+								"total": "12"
+							}
+						}
+					]
+				};
+				$.ajax({
+					url : "https://urry-mvp.sense-by-ccbji.click/api/mvp/ExportSaleTracking",
+					type: "POST",
+					data: JSON.stringify(input),
+					contentType: "application/json; charset=utf-8",
+					responseType : "json",
+					success    : function(data){
+						var bin = atob(data.data);
+						var ab = s2ab(bin);
+						var blob = new Blob([ab], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;' });
+						if (typeof window.navigator.msSaveBlob !== 'undefined') {
+							window.navigator.msSaveBlob(blob, 'SalesTracking.xlsx');
+						} else {
+							const csvURL = window.URL.createObjectURL(blob);
+							const tempLink = document.createElement('a');
+							tempLink.href = csvURL;
+							tempLink.setAttribute('download', 'SalesTracking.xlsx');
+							tempLink.click();
+						}
+					}
+				});
+			});
+			
+			function s2ab(s) {
+			  var buf = new ArrayBuffer(s.length);
+			  var view = new Uint8Array(buf);
+			  for (var i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+			  return buf;
+			}
+		</script>
+	</body>
+</html>

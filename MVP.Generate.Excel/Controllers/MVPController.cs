@@ -20,9 +20,10 @@ namespace MVP.Generate.Excel.Controllers
             _logService = logService;
             _exportFile = exportFile;
         }
+
         [HttpPost]
         [HttpOptions]
-        public async Task<IActionResult> ExportSaleTracking(SaleTrackingInput input)
+        public async Task<IActionResult> ExportSaleTracking(SaleTrackingInput input, [FromQuery] bool returnBytes = false)
         {
             try
             {
@@ -34,9 +35,17 @@ namespace MVP.Generate.Excel.Controllers
                         ErrorMessage = "Export SaleTracking Fail !"
                     });
                 }
-                var stream = new FileStream(AppDomain.CurrentDomain.BaseDirectory + result, FileMode.Open, FileAccess.Read, FileShare.None, 5000, FileOptions.DeleteOnClose);
-                Response.Headers.Add("Content-Disposition", $"inline; filename={result}");
-                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                var bytes = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + result);
+                System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + result);
+                if (returnBytes)
+                {
+                    return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                }
+                var base64 = Convert.ToBase64String(bytes);
+                return Ok(new
+                {
+                    data = base64
+                });
             }
             catch (Exception ex)
             {
@@ -49,7 +58,7 @@ namespace MVP.Generate.Excel.Controllers
         }
         [HttpPost]
         [HttpOptions]
-        public async Task<IActionResult> ExportCorporateWallet(CorporateWalletInput input)
+        public async Task<IActionResult> ExportCorporateWallet(CorporateWalletInput input, [FromQuery] bool returnBytes = false)
         {
             try
             {
@@ -61,9 +70,17 @@ namespace MVP.Generate.Excel.Controllers
                         ErrorMessage = "Export Corporate Wallet Fail !"
                     });
                 }
-                var stream = new FileStream(AppDomain.CurrentDomain.BaseDirectory + result, FileMode.Open, FileAccess.Read, FileShare.None, 5000, FileOptions.DeleteOnClose);
-                Response.Headers.Add("Content-Disposition", $"inline; filename={result}");
-                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                var bytes = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + result);
+                System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + result);
+                if (returnBytes)
+                {
+                    return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                }
+                var base64 = Convert.ToBase64String(bytes);
+                return Ok(new
+                {
+                    data = base64
+                });
             }
             catch (Exception ex)
             {
@@ -76,11 +93,11 @@ namespace MVP.Generate.Excel.Controllers
         }
         [HttpPost]
         [HttpOptions]
-        public async Task<IActionResult> ExportUCashPoints(UcashPointInput input)
+        public async Task<IActionResult> ExportUCashPoints(UcashPointInput input, [FromQuery] bool returnBytes = false)
         {
             try
             {
-                var result = await Task.FromResult(_exportFile.ExportUcashPointst(input));
+                var result = await Task.FromResult(_exportFile.ExportUcashPoints(input));
                 if (string.IsNullOrWhiteSpace(result))
                 {
                     return Ok(new ResponseModel
@@ -88,9 +105,17 @@ namespace MVP.Generate.Excel.Controllers
                         ErrorMessage = "Export UCash Points Fail !"
                     });
                 }
-                var stream = new FileStream(AppDomain.CurrentDomain.BaseDirectory + result, FileMode.Open, FileAccess.Read, FileShare.None, 5000, FileOptions.DeleteOnClose);
-                Response.Headers.Add("Content-Disposition", $"inline; filename={result}");
-                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                var bytes = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + result);
+                System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + result);
+                if (returnBytes)
+                {
+                    return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                }
+                var base64 = Convert.ToBase64String(bytes);
+                return Ok(new
+                {
+                    data = base64
+                });
             }
             catch (Exception ex)
             {
@@ -103,7 +128,7 @@ namespace MVP.Generate.Excel.Controllers
         }
         [HttpPost]
         [HttpOptions]
-        public async Task<IActionResult> ExportSubcriptionTracking(SubcriptionTrackingInput input)
+        public async Task<IActionResult> ExportSubcriptionTracking(SubcriptionTrackingInput input, [FromQuery] bool returnBytes = false)
         {
             try
             {
@@ -115,9 +140,17 @@ namespace MVP.Generate.Excel.Controllers
                         ErrorMessage = "Export Subcription Tracking Fail !"
                     });
                 }
-                var stream = new FileStream(AppDomain.CurrentDomain.BaseDirectory + result, FileMode.Open, FileAccess.Read, FileShare.None, 5000, FileOptions.DeleteOnClose);
-                Response.Headers.Add("Content-Disposition", $"inline; filename={result}");
-                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                var bytes = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + result);
+                System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + result);
+                if (returnBytes)
+                {
+                    return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                }
+                var base64 = Convert.ToBase64String(bytes);
+                return Ok(new
+                {
+                    data = base64
+                });
             }
             catch (Exception ex)
             {
@@ -130,7 +163,7 @@ namespace MVP.Generate.Excel.Controllers
         }
         [HttpPost]
         [HttpOptions]
-        public async Task<IActionResult> ExportProcessingFeeTracking(ProcessingFeeTrackingInput input)
+        public async Task<IActionResult> ExportProcessingFeeTracking(ProcessingFeeTrackingInput input, [FromQuery] bool returnBytes = false)
         {
             try
             {
@@ -142,9 +175,17 @@ namespace MVP.Generate.Excel.Controllers
                         ErrorMessage = "Export Processing Fee Tracking Fail !"
                     });
                 }
-                var stream = new FileStream(AppDomain.CurrentDomain.BaseDirectory + result, FileMode.Open, FileAccess.Read, FileShare.None, 5000, FileOptions.DeleteOnClose);
-                Response.Headers.Add("Content-Disposition", $"inline; filename={result}");
-                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                var bytes = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + result);
+                System.IO.File.Delete(AppDomain.CurrentDomain.BaseDirectory + result);
+                if (returnBytes)
+                {
+                    return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                }
+                var base64 = Convert.ToBase64String(bytes);
+                return Ok(new
+                {
+                    data = base64
+                });
             }
             catch (Exception ex)
             {
